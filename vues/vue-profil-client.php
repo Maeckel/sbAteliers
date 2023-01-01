@@ -17,7 +17,7 @@
 		<h5><?= $client[ "date_naissance" ] ?></h5>
 		<h5><?= $client[ "email" ] ?></h5>
 		<h5><?= $client[ "mobile" ] ?></h5>
-		<h5><?= $client[ "adresse" ] ?></h5>
+		<h5><?= openssl_decrypt( $client[ "adresse" ] , 'id-aes128-CCM' , 'key' ) ?></h5>
 		<h5><?= $client[ "cp" ] ?></h5>
 		<h5><?= $client[ "ville" ] ?></h5>
 		

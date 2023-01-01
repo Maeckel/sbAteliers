@@ -1,3 +1,7 @@
+drop database if exists sbateliers;
+create database sbateliers;
+use sbateliers;
+
 -- MySQL dump 10.19  Distrib 10.3.34-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: sb
@@ -76,7 +80,16 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'ONESTAS','Valentine','azerty','valentine.onestas@gmail.com','1995-11-08','15, rue de la gare','94130','Nogent s/Marne','0693530293','Mlle'),(3,'HAFIDI','Nadiya','azerty','n.hafidi@gmail.com','2000-04-01','11, bd de Strasbourg','94120','Fontenay s/bois','0711930388','Mme'),(4,'OSARO','Clémence','azerty','c.osaro@orange.fr','2001-09-15','25, place de la mairie','77350','Le Mée s/Seine','0683340299','Mme'),(5,'JADOUX','Lucie','azerty','lucie.jadoux@gmail.com','1997-11-03','2, bd de La République','94130','Nogent s/Marne','0703740203','Mlle'),(6,'KANNY','Pauline','azerty','p.kanny@gmail.com','1999-01-11','1 ter, rue Paul Doumer','95000','Cergy','0730832731','Mme'),(8,'KARA','Juliette','azerty','juliette.kara@gmail.com','2007-05-10','21, rue de la gare','94200','Ivry s/Seine','0799720154','Mlle'),(9,'LAURY','Sophie','azerty','sophie.laury@gmail.com','2002-08-02','15, rue du parc','94400','Vitry s/Seine','0638304393','Mlle'),(10,'BELLIL','Rim','mehdicoeur','rim.bellil@gmail.com','1998-01-05','13, avenue de la République','94500','Champigny s/Marne','0629341899','Mme');
+INSERT INTO `client` VALUES (1,'ONESTAS','Valentine',MD5('azerty'), 'valentine.onestas@gmail.com','1995-11-08','15, rue de la gare','94130','Nogent s/Marne','0693530293','Mlle'),(3,'HAFIDI','Nadiya',MD5('azerty'),'n.hafidi@gmail.com','2000-04-01','11, bd de Strasbourg','94120','Fontenay s/bois','0711930388','Mme'),(4,'OSARO','Clémence',MD5('azerty'),'c.osaro@orange.fr','2001-09-15','25, place de la mairie','77350','Le Mée s/Seine','0683340299','Mme'),(5,'JADOUX','Lucie',MD5('azerty'),'lucie.jadoux@gmail.com','1997-11-03','2, bd de La République','94130','Nogent s/Marne','0703740203','Mlle'),(6,'KANNY','Pauline',MD5('azerty'),'p.kanny@gmail.com','1999-01-11','1 ter, rue Paul Doumer','95000','Cergy','0730832731','Mme'),(8,'KARA','Juliette',MD5('azerty'),'juliette.kara@gmail.com','2007-05-10','21, rue de la gare','94200','Ivry s/Seine','0799720154','Mlle'),(9,'LAURY','Sophie',MD5('azerty'),'sophie.laury@gmail.com','2002-08-02','15, rue du parc','94400','Vitry s/Seine','0638304393','Mlle'),(10,'BELLIL','Rim',MD5('mehdicoeur'),'rim.bellil@gmail.com','1998-01-05','13, avenue de la République','94500','Champigny s/Marne','0629341899','Mme');
+UPDATE `client` SET `email` = AES_ENCRYPT(`email`, 'azerty') WHERE 'email' is not null;
+UPDATE `client` SET `nom` = AES_ENCRYPT(`nom`, 'azerty') WHERE `nom` is not null;
+UPDATE `client` SET `prenom` = AES_ENCRYPT(`prenom`, 'azerty') WHERE `prenom` is not null;
+UPDATE `client` SET `date_naissance` = AES_ENCRYPT(`email`, 'azerty') WHERE `date_naissance` is not null;
+UPDATE `client` SET `adresse` = AES_ENCRYPT(`adresse`, 'azerty') WHERE `adresse` is not null;
+UPDATE `client` SET `cp` = AES_ENCRYPT(`cp`, 'azerty') WHERE `cp` is not null;
+UPDATE `client` SET `ville` = AES_ENCRYPT(`ville`, 'azerty') WHERE `ville` is not null;
+UPDATE `client` SET `mobile` = AES_ENCRYPT(`mobile`, 'azerty') WHERE `mobile` is not null;
+UPDATE `client` SET `civilite` = AES_ENCRYPT(`civilite`, 'azerty') WHERE `civilite` is not null;
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +144,9 @@ CREATE TABLE `responsable` (
 
 LOCK TABLES `responsable` WRITE;
 /*!40000 ALTER TABLE `responsable` DISABLE KEYS */;
-INSERT INTO `responsable` VALUES (1,'DA SILVA','Maria','azerty','mdasilva'),(2,'JONES','Katarina','azerty','kjones');
+INSERT INTO `responsable` VALUES (1,'DA SILVA','Maria',MD5('azerty'),'mdasilva'),(2,'JONES','Katarina',MD5('azerty'),'kjones');
+UPDATE `responsable` SET `nom` = AES_ENCRYPT(`nom`, 'azerty') WHERE `nom` is not null;
+UPDATE `responsable` SET `prenom` = AES_ENCRYPT(`prenom`, 'azerty') WHERE `prenom` is not null;
 /*!40000 ALTER TABLE `responsable` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

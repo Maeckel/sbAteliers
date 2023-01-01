@@ -1,7 +1,8 @@
 <?php
 
 	$email = $_POST[ "email" ] ;
-	$mdp = $_POST[ "mdp" ] ;
+	$md2 = md5($_POST[ "mdp" ]) ;
+	$mdp = substr($md2,0,-2);
 	
 	require "modeles/ModeleSBAteliers.php" ;
 	$client = ModeleSBAteliers::getClient( $email , $mdp ) ;

@@ -10,8 +10,8 @@
 		<a href="/sbateliers">Accueil</a>
 		<br/>
 		
-		<?php if( isset( $erreur ) ){ ?>
-			<b><?= $erreur ?></b>
+		<?php if( isset( $email ) ){ ?>
+			<b><?= $email ?></b>
 		<?php } ?>
 		
 		<form action="/sbateliers/clients/connecter" method="POST">
